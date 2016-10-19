@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html><head><title>Crystal Ball</title>
+<style>
+
+body {
+    background: #222;
+    background: linear-gradient(to bottom, #222 80%,#50b 100%);
+    width:100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.tossing{
+    animation-name: tossing;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    /*background: #ccc;*/
+    width: auto;
+    text-align: center;
+    margin: auto;
+    font-size:20em;
+}
+
+#prophecy{
+/*    font-family: sans-serif;*/
+    text-align: center;
+  /*color: rgba(255,255,255,1);*/
+  /*  color: #f08;*/
+    color: #fff;
+/*        font-size: 3em;*/
+  text-shadow: 4px 4px 6px #f08 ;
+  transition: text-shadow 2s cubic-bezier(0.42, 0, 0.58, 1) 1s;
+  font: normal 3em/1 "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    visibility:hidden;
+
+}
+
+/*
+.enjoy-css {
+  box-sizing: content-box;
+  border: none;
+  font: normal 196px/1 "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: rgba(255,255,255,1);
+  text-overflow: ellipsis;
+  background: rgba(255,255,255,0);
+  text-shadow: 4px 4px 6px rgba(255,0,255,1) ;
+  transition: text-shadow 2s cubic-bezier(0.42, 0, 0.58, 1) 1s;
+}*/
+
+@keyframes tossing {
+    0% {
+        transform: rotate(-4deg);
+    }
+    50% {
+        transform: rotate(4deg);
+    }
+    100% {
+        transform: rotate(-4deg);
+    }
+}
+
+.fadeIn{
+    animation-name: fadeIn;
+    animation-duration: 0.5s;   
+    animation-timing-function: ease-in-out; 
+    visibility: visible !important; 
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: scale(0);
+        opacity: 0.0;       
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1; 
+    }       
+}
+
+.fadeOut{
+    animation-name: fadeOut;
+    animation-duration: 3s; 
+    animation-timing-function: ease-in-out; 
+    visibility: visible !important; 
+}
+
+@keyframes fadeOut{
+    0% {
+        opacity: 1.0;       
+    }
+    100% {
+        opacity: 0.0;   
+    }       
+}
+
+
+.btn {
+  border-radius: 6px;
+    border-color: #555 #444;
+  font-family: Georgia;
+  color: #eee;
+  font-size: 20px;
+  background: Indigo;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+    margin: auto;
+}
+
+.btn:hover {
+  background: MediumOrchid;
+  text-decoration: none;
+}
+
+#gazebutton {
+    margin: 0 auto;
+    max-width: 700px;
+    text-align: center;
+}
+
+
+</style>
+<script type="text/javascript">
+function gaze() {
+    var x = document.getElementById("gazebutton");
+    x.disabled = true;
+    x.addEventListener("animationend", buttongone);
+    x.className += " fadeOut";
+}
+function buttongone() {
+    document.getElementById("gazebutton").remove();
+    document.getElementById("prophecy").className += " fadeIn";
+}
+</script>
+    </head>
+    <body>
+        <div class="tossing"><span>&#x1F52E;</span></div>
+        <div id="gazebutton">
+            <button type="button" class="btn" onClick="gaze()">GAZE UPON YOUR FATE</button>
+        </div>
+        <h1 id="prophecy">{{ prophecy }}</h1>
+    </body></html>
